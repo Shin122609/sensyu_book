@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB; //クエリビルダ
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
-
+use Throwable;
+use Illuminate\Support\Facades\Log;
+use App\Models\Shop;
 
 class OwnersController extends Controller
 {
@@ -61,17 +62,36 @@ class OwnersController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Owner::class],
             'password' => ['required', 'confirmed','min:8', Rules\Password::defaults()],
         ]);
 
-        Owner::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try{
+            DB::transaction(function() use($request){
+                $owner = Owner::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                Shop::create([
+                    'owner_id' =>$owner->id,
+                    'name'=>'店名を入力してください',
+                    'information'=>'',
+                    'filename' => '',
+                    'is_selling'=>true,
+                ]);
+
+            },2 );
+        }catch(Throwable $e){
+            Log::error($e);
+            throw $e;
+        }
+
+        
 
         return to_route('admin.owners.index')
         ->with(['message'=>'オーナー登録を実施しました','status'=>'info']);
