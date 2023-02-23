@@ -10,8 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <section class="text-gray-600 body-font">
-                    
                         <div class="container px-5 mx-auto">
+                            <x-flash-message status="info" />
                             <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                             <table class="table-auto w-full text-left whitespace-no-wrap mt-16 mb-16">
                                 <thead>
@@ -36,7 +36,7 @@
                                 </tbody>
                             </table>
                             <div class="flex justify-end mb-4">
-                                <button onclick="location.href='{{ route('admin.owners.create')}}'" class=" text-white bg-blue-600 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">新規登録する</button>
+                                <button onclick="location.href='{{ route('admin.owners.create') }}'" class=" text-white bg-blue-600 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">新規登録する</button>
                             </div>
                             </div>
                         </div>
