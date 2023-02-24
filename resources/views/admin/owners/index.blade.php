@@ -33,7 +33,7 @@
                                     <td class="md:px-4 py-3">
                                     <button type="button" onclick="location.href='{{ route('admin.owners.edit',['owner' => $owner->id])}}'" class=" text-white bg-blue-400 border-0 py-2 px-4 focus:outline-none hover:bg-blue-500 rounded ">編集</button>
                                     </td>
-                                    <form id="delete_{{$owner->id}}" method="post" action="{{ route('admin.owners.destroy',['owner' => $owner->id])}}"> 
+                                    <form id="delete_{{$owner->id}}" method="post" action="{{ route('admin.owners.destroy',['owner' => $owner->id])}}"></form>
                                         @csrf 
                                         @method('delete')
                                     <td class="px-4 py-3">
