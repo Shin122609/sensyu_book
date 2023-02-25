@@ -12,12 +12,12 @@
                 <x-flash-message status="session('status')" />
                 <div class="flex flex-wrap">
                     @foreach($images as $image)
-                    <div class="w-1/4 p-4">
+                    <div class="w-1/4 p-2 md:p-4">
                     <a href="{{ route('owner.images.edit',['image' => $image->id] )}}"> 
-                    <div class="border rounded-md p-4">
-                    <div class="text-xl">{{ $image->title}}</div>
+                    <div class="border rounded-md p-2 md:p-4">
                     </div>
                     <x-thumbnail :filename="$image->filename"  type="products"/>
+                    <div class="text-black-500">{{ $image->title}}</div>
                     </a>
                     </div>
                     @endforeach 
