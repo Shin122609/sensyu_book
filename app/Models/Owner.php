@@ -52,4 +52,5 @@ class Owner extends Authenticatable
     {
         return $this->hasMany(Image::class);
     }
+
 }
