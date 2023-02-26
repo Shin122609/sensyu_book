@@ -10,8 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                    <form method="post" action="{{ route('owner.products.store',['product' => $product->id])}}" > 
+                <x-flash-message status="session('status')" />
+                    <form method="post" action="{{ route('owner.products.update',['product' => $product->id])}}" > 
                         @csrf 
+                        @method('put')  
                             <div class="-m-2">
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
@@ -104,7 +106,7 @@
                                                     currentImage="{{$product->imageFourth->filename ?? ''}}"name="image4" />
                                 <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
-                                    <div><input type="radio" name="is_selling" value="1" class="mr-2" @if($product->is_selling === 1){checked} @endif>販売中</div>
+                                    <div><input type="radio" name="is_selling" value="1" class="mr-2" @if($product->is_selling === 1){checked} @endif}}>販売中</div>
                                     <div><input type="radio" name="is_selling" value="0" class="mr-2" @if($product->is_selling === 0){checked} @endif>販売停止中</div>
                                 </div>
                                 </div>

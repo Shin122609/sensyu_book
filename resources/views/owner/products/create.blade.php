@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                    <form method="post" action="{{ route('owner.products.update' )}}" > 
+                    <form method="post" action="{{ route('owner.products.store' )}}" > 
                         @csrf 
                             <div class="-m-2">
                             <div class="p-2 w-1/2 mx-auto">
@@ -45,6 +45,7 @@
                                 <div class="relative">
                                     <label for="quantity" class="leading-7 text-sm text-gray-600">初期在庫 *必須</label>
                                     <input type="number" id="quantity" name="quantity" value="{{ old('quantity')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    <span class="text-sl">0～99の範囲で入力してください</span>
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                                 </div>
